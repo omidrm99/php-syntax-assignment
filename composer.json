@@ -1,0 +1,15 @@
+{
+    "name": "src/src",
+    "autoload": {
+        "psr-4": {
+            "Src\\Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ata",
+            "email": "ata@ata.com"
+        }
+    ],
+    "require": {}
+}
