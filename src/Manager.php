@@ -1,9 +1,10 @@
 <?php
 
-namespace src;
+namespace Src;
 
-use src\Task\Task;
-use src\Validate\Validable;
+use Src\Exception\CommandNotFoundException;
+use Src\Task\Task;
+use Src\Validate\Validable;
 
 class Manager
 {

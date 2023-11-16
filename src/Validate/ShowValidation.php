@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Validate;
+namespace Src\Validate;
 
-use src\Command;
+use Src\Command;
 
 class ShowValidation implements Validable
 {

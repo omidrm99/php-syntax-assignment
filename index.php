@@ -3,15 +3,17 @@
 declare(strict_types=1);
 
 
-use src\Command;
-use src\Enum\CommandName;
-use src\Manager;
-use src\Task\IndexTask;
-use src\Task\ShowTask;
-use src\Validate\IndexValidation;
-use src\Validate\ShowValidation;
+
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+use Src\Command;
+use Src\Enum\CommandName;
+use Src\Manager;
+use Src\Task\IndexTask;
+use Src\Task\ShowTask;
+use Src\Validate\IndexValidation;
+use Src\Validate\ShowValidation;
 
 const COMMAND_PATH = __DIR__ . '/commands.json';
 
@@ -31,3 +33,4 @@ $manager->addCommand(
 );
 
 $manager->execute($command);
+

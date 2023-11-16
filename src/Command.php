@@ -1,7 +1,12 @@
 <?php
 
-namespace src;
+namespace Src;
 
+/**
+ * @property $titles
+ * @property $authors
+ * @property $perPage
+ */
 class Command
 {
     public string $task;

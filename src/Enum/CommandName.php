@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Enum;
+namespace Src\Enum;
 
 enum CommandName: string
 {

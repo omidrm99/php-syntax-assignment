@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Task;
+namespace Src\Task;
 
-use src\Command;
+use Src\Command;
 
 interface Task
 {
@@ -10,5 +10,7 @@ interface Task
      * @param Command $command
      * @return mixed
      */
-    public function handle(Command $command): mixed;
+    public function handle(Command $command): void;
+
+    public function view(mixed $sources): void;
 }

@@ -1,13 +1,18 @@
 <?php
 
-namespace src\Task;
+namespace Src\Task;
 
-use src\Command;
+use Src\Command;
 
 class ShowTask implements Task
 {
     public function handle(Command $command): mixed
     {
         // TODO: Implement handle() method.
+    }
+
+    public function view(mixed $sources): void
+    {
+        // TODO: Implement view() method.
     }
 }

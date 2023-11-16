@@ -1,9 +1,9 @@
 <?php
 
-namespace src\Validate;
+namespace Src\Validate;
 
-use src\Command;
-use src\ValidationException;
+use Src\Command;
+use Src\Exception\ValidationException;
 
 interface Validable
 {

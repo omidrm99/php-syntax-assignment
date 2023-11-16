@@ -2,7 +2,7 @@
     "name": "src/src",
     "autoload": {
         "psr-4": {
-            "Src\\Src\\": "src/"
+            "Src\\": "src/"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "ata@ata.com"
         }
     ],
-    "require": {}
+    "require": {
+        "nesbot/carbon": "^2.71"
+    }
 }
