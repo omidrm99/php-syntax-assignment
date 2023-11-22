@@ -2,31 +2,31 @@
 
 namespace Src\Validate;
 
-use Src\Command;
 use Src\Enum\SortTypes;
 use src\Exception\ValidationException;
+use Src\Request;
 
 class IndexValidation implements Validable
 {
-    public function validate(Command $command): void
+    public function validate(Request $request): void
     {
-        if (isset($command->page)) {
-            if (!gettype($command->page) === 'integer') {
+        if (isset($request->page)) {
+            if (!gettype($request->page) === 'integer') {
                 throw new ValidationException();
             }
         }
-        if (isset($command->page)) {
-            if (!gettype($command->perPage) === 'integer') {
+        if (isset($request->page)) {
+            if (!gettype($request->perPage) === 'integer') {
                 throw new ValidationException();
             }
         }
-        if (isset($command->sort)) {
+        if (isset($request->sort)) {
             $validValues = [];
             $types = SortTypes::cases();
             foreach ($types as $type) {
                 $validValues[] = $type->value;
             }
-            if (in_array($command->sort, $validValues)) {
+            if (in_array($request->sort, $validValues)) {
                 throw new ValidationException();
             }
         }

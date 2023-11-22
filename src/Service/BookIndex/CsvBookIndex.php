@@ -5,6 +5,7 @@ namespace Src\Service\BookIndex;
 use Src\Command;
 use Src\Dto\BookDto;
 use Src\Dto\BookIndexFilterDto;
+use Src\Request;
 
 class CsvBookIndex implements BookIndexInterface
 {
@@ -15,14 +16,14 @@ class CsvBookIndex implements BookIndexInterface
     /**
      * @inheritDoc
      */
-    public function getRequestedBooks(Command $command): array
+    public function getRequestedBooks(Request $request): array
     {
         $books = [];
         $file = fopen($this->csvFilePath, 'r');
         fgetcsv($file);
         while (($book = fgetcsv($file)) !== false) {
             $filterIndexDto = BookIndexFilterDto::fromData(authorName: $book[2], titleName: $book[1]);
-            if ($this->checkShouldBeFiltered($filterIndexDto, $command->authors ?? [], $command->titles ?? [])) {
+            if ($this->checkShouldBeFiltered($filterIndexDto, $request->authors ?? [], $request->titles ?? [])) {
                 $books[] = BookDto::fromData(
                     title: $book[1],
                     authorName: $book[2],
