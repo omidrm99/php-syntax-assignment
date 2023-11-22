@@ -2,6 +2,7 @@
 
 namespace Src\Model;
 
+use JetBrains\PhpStorm\Pure;
 use Src\Dto\BookGetFilterDto;
 use Src\Dto\FilterDto;
 use Src\Dto\InsertDto;
@@ -25,7 +26,7 @@ class Book implements Model
         return $data;
     }
 
-    public function add(InsertDto $insertDto)
+    public function add(InsertDto $insertDto): array
     {
         $data = [];
         $bookCreateClasses = $this->addBookClasses();
@@ -35,7 +36,7 @@ class Book implements Model
         return $data;
     }
 
-    private function addBookClasses(): array
+    #[Pure] private function addBookClasses(): array
     {
         return [
             new CsvBookCreate()
