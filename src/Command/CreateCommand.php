@@ -5,6 +5,7 @@ namespace Src\Command;
 use Src\Dto\InsertDto;
 use Src\Model\Book;
 use Src\Request;
+use Src\View\View;
 
 class CreateCommand implements Command
 {
@@ -12,8 +13,7 @@ class CreateCommand implements Command
     {
         $book = new Book();
         $booksToAdd = InsertDto::fromRequest($request);
-        $book->add($booksToAdd);
-        View::render(fileName: 'list', items: ['books' => $addedBooks]);
-
+        $allBooks = $book->add($booksToAdd);
+        View::render(fileName: 'list', items: ['books' => $allBooks]);
     }
 }
