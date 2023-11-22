@@ -14,7 +14,7 @@ class InsertDto
 
     public static function fromRequest(
         Request $request
-    ): array
+    ): InsertDto
     {
         foreach ($request as $requestItem) {
             $books = [];
@@ -27,8 +27,6 @@ class InsertDto
             );
             $books[] = $book;
         }
-        if (isset($books)) {
-            return $books;
-        }
+            return new self($books);
     }
 }
