@@ -3,10 +3,10 @@
 namespace Src;
 
 use Exception;
+use Src\Command\Command;
 use Src\Dto\CommandDto;
 use Src\Exception\CommandNotFoundException;
 use Src\Exception\ValidationException;
-use Src\Task\Command;
 
 class Manager
 {
@@ -59,11 +59,11 @@ class Manager
      */
     private function findRelatedCommand(string $command): CommandDto
     {
-        return array_reduce($this->commands, function (CommandDto $dto) use ($command) {
+        return array_filter($this->commands, function (CommandDto $dto) use ($command) {
             if ($dto->commandName === $command) {
                 return $dto;
             }
-        }) ?? throw new CommandNotFoundException();
+        })[0] ?? throw new CommandNotFoundException();
     }
 
     /**
@@ -73,8 +73,8 @@ class Manager
     {
         if ($validator !== null) {
             $validator = new $validator();
+            $request->setValidator($validator);
         }
-        $request->setValidator($validator);
         $request->validate();
     }
 

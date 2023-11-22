@@ -5,6 +5,7 @@ namespace Src\Service\BookIndex;
 use Src\Command;
 use Src\Dto\BookDto;
 use Src\Dto\BookIndexFilterDto;
+use Src\Request;
 
 class JsonBookIndex implements BookIndexInterface
 {
@@ -15,7 +16,7 @@ class JsonBookIndex implements BookIndexInterface
     /**
      * @inheritDoc
      */
-    public function getRequestedBooks(Command $command): array
+    public function getRequestedBooks(Request $request): array
     {
         $books = [];
         $contents = json_decode(
