@@ -44,8 +44,8 @@
     <h1>Oops! Something went wrong.</h1>
     <?php
     /** @noinspection ALL */
-    $error = $items['error'];
-    echo "<p>{$error?->message}</p>"
+    $message = $items['message'];
+    echo "<p>{$message}</p>"
     ?>
 </div>
 </body>
