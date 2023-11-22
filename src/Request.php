@@ -10,6 +10,7 @@ use Src\Validate\Validable;
  * @property $authors
  * @property $perPage
  */
+#[\AllowDynamicProperties]
 class Request
 {
     public string $task;
@@ -34,8 +35,8 @@ class Request
      */
     private function setDynamicParameters(array $parameters): void
     {
-        foreach ($parameters as $parameter) {
-            $this->$parameter = $parameters[$parameter];
+        foreach ($parameters as $parameter => $value) {
+            $this->$parameter = $value;
         }
     }
 

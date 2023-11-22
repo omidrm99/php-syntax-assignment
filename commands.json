@@ -1,4 +1,7 @@
 {
   "command_name": "index",
-  "parameters": []
+  "parameters": {
+    "isbns" : ["978-1451635626","978-1451635126","978-0061120684"],
+    "authors": ["Aldous Orson"]
+  }
 }

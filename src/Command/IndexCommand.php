@@ -3,22 +3,22 @@
 namespace Src\Command;
 
 use Src\Dto\BookDto;
+use Src\Dto\BookGetFilterDto;
+use Src\Model\Book;
 use Src\Request;
-use Src\Service\BookIndex\CsvBookIndex;
-use Src\Service\BookIndex\JsonBookIndex;
+use src\Service\Model\CsvBookIndex;
+use src\Service\Model\JsonBookIndex;
 use Src\View\View;
 
 class IndexCommand implements Command
 {
     public function handle(Request $request): void
     {
-        $csvBooks = (new CsvBookIndex())->getRequestedBooks($request);
-        $jsonBooks = (new JsonBookIndex())->getRequestedBooks($request);
-
-        $allBooks = array_merge($csvBooks, $jsonBooks);
+        $book = new Book();
+        $filterDto = BookGetFilterDto::fromRequest($request);
+        $allBooks = $book->get($filterDto);
         $sortedBooks = $this->applyDateSort($allBooks, $request);
         $finalBooks = $this->applyPagination($sortedBooks, $request);
-
         View::render(fileName: 'list', items: ['books' => $finalBooks]);
     }
 
@@ -42,16 +42,16 @@ class IndexCommand implements Command
     private function applyPagination(array $books, Request $request): array
     {
         $defaultPerPage = 4;
-        $defaultPage = 3; //todo : add them to enum
+        $defaultPage = 1; //todo : add them to enum
         if (isset($request->perPage)) {
             $defaultPerPage = $request->perPage;
         }
         if (isset($request->page)) {
             $defaultPage = $request->page;
         }
-
-        $startOffset = ($defaultPerPage * $defaultPage) - $defaultPerPage;
-        $length = $startOffset + $defaultPerPage;
-        return array_slice($books, $startOffset, $length);
+        $lastOffset = ($defaultPerPage * $defaultPage);
+        $firstOffset = $lastOffset - $defaultPerPage;
+        return array_slice($books, $firstOffset, $lastOffset - $firstOffset);
     }
+
 }
