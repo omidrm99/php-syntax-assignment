@@ -1,16 +1,15 @@
 <?php
 
-namespace Src\Task;
+namespace Src\Command;
 
 use Src\Request;
 
 interface Command
 {
     /**
-     * @param Request $command
+     * @param Request $request
      * @return void
      */
-    public function handle(Request $command): void;
+    public function handle(Request $request): void;
 
-    public function view(mixed $sources): void;
 }
