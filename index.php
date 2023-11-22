@@ -3,12 +3,11 @@
 declare(strict_types=1);
 
 
-
-
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Src\Command\IndexCommand;
 use Src\Command\ShowCommand;
+use Src\Command\CreateCommand;
 use Src\Enum\CommandName;
 use Src\Manager;
 use Src\Request;
@@ -28,7 +27,12 @@ $manager->addCommand(
 );
 $manager->addCommand(
     CommandName::Show->value,
-    ShowCommand::class);
+    ShowCommand::class
+);
+$manager->addCommand(
+    CommandName::Create->value,
+    CreateCommand::class
+);
 
 $manager->execute($command);
 
