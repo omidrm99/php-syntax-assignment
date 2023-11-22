@@ -59,11 +59,11 @@ class Manager
      */
     private function findRelatedCommand(string $command): CommandDto
     {
-        return array_filter($this->commands, function (CommandDto $dto) use ($command) {
+        return [...array_filter($this->commands, function (CommandDto $dto) use ($command) {
             if ($dto->commandName === $command) {
                 return $dto;
             }
-        })[0] ?? throw new CommandNotFoundException();
+        })][0] ?? throw new CommandNotFoundException();
     }
 
     /**
