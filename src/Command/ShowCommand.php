@@ -2,11 +2,11 @@
 
 namespace Src\Task;
 
-use Src\Command;
+use Src\Request;
 
-class ShowTask implements Task
+class ShowCommand implements Command
 {
-    public function handle(Command $command): mixed
+    public function handle(Request $command): void
     {
         // TODO: Implement handle() method.
     }
