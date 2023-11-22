@@ -4,7 +4,9 @@ namespace Src\Model;
 
 use Src\Dto\BookGetFilterDto;
 use Src\Dto\FilterDto;
+use Src\Dto\InsertDto;
 use Src\Service\Model\BookIndexInterface;
+use Src\Service\Model\CsvBookCreate;
 use Src\Service\Model\CsvBookIndex;
 use Src\Service\Model\JsonBookIndex;
 
@@ -16,11 +18,28 @@ class Book implements Model
         $data = [];
         assert($filterDto instanceof BookGetFilterDto);
         $getters = $this->getBookGetters();
-        foreach ($getters as $getter){
+        foreach ($getters as $getter) {
             assert($getter instanceof BookIndexInterface);
             $data = array_merge($data, $getter->getRequestedBooks($filterDto));
         }
         return $data;
+    }
+
+    public function add(InsertDto $insertDto)
+    {
+        $data = [];
+        $bookCreateClasses = $this->addBookClasses();
+        foreach ($bookCreateClasses as $adder) {
+            $data = array_merge($data, $adder->addRequestedBooks($insertDto));
+        }
+        return $data;
+    }
+
+    private function addBookClasses(): array
+    {
+        return [
+            new CsvBookCreate()
+        ];
     }
 
     private function getBookGetters(): array
