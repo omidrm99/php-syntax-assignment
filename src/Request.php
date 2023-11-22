@@ -2,15 +2,22 @@
 
 namespace Src;
 
+use Src\Exception\ValidationException;
+use Src\Validate\Validable;
+
 /**
  * @property $titles
  * @property $authors
  * @property $perPage
  */
-class Command
+class Request
 {
     public string $task;
+    private ?Validable $validable = null;
 
+    /**
+     * @param string $filePath
+     */
     public function __construct(
         string $filePath
     )
@@ -21,6 +28,10 @@ class Command
         $this->setDynamicParameters($jsonData['parameters']);
     }
 
+    /**
+     * @param array $parameters
+     * @return void
+     */
     private function setDynamicParameters(array $parameters): void
     {
         foreach ($parameters as $parameter) {
@@ -28,4 +39,20 @@ class Command
         }
     }
 
+    /**
+     * @throws ValidationException
+     */
+    public function validate(): void
+    {
+        $this->validable?->validate($this);
+    }
+
+    /**
+     * @param Validable $validator
+     * @return void
+     */
+    public function setValidator(Validable $validator): void
+    {
+        $this->validable = $validator;
+    }
 }

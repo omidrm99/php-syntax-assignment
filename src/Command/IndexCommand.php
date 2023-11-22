@@ -2,21 +2,21 @@
 
 namespace Src\Task;
 
-use Src\Command;
 use Src\Dto\BookDto;
+use Src\Request;
 use Src\Service\BookIndex\CsvBookIndex;
 use Src\Service\BookIndex\JsonBookIndex;
 
-class IndexTask implements Task
+class IndexCommand implements Command
 {
-    public function handle(Command $command): void
+    public function handle(Request $request): void
     {
-        $csvBooks = (new CsvBookIndex())->getRequestedBooks($command);
-        $jsonBooks = (new JsonBookIndex())->getRequestedBooks($command);
+        $csvBooks = (new CsvBookIndex())->getRequestedBooks($request);
+        $jsonBooks = (new JsonBookIndex())->getRequestedBooks($request);
 
         $allBooks = array_merge($csvBooks, $jsonBooks);
-        $sortedBooks = $this->applyDateSort($allBooks, $command);
-        $finalBooks = $this->applyPagination($sortedBooks, $command);
+        $sortedBooks = $this->applyDateSort($allBooks, $request);
+        $finalBooks = $this->applyPagination($sortedBooks, $request);
         $this->view($finalBooks);
     }
 
@@ -40,7 +40,7 @@ class IndexTask implements Task
     private function applyPagination(array $books, Command $command): array
     {
         $defaultPerPage = 4;
-        $defaultPage = 1; //todo : add them to enum
+        $defaultPage = 3; //todo : add them to enum
         if (isset($command->perPage)) {
             $defaultPerPage = $command->perPage;
         }
@@ -48,7 +48,7 @@ class IndexTask implements Task
             $defaultPage = $command->page;
         }
 
-        $startOffset = $defaultPerPage * $defaultPage - 1;
+        $startOffset = ($defaultPerPage * $defaultPage) - $defaultPerPage;
         $length = $startOffset + $defaultPerPage;
         return array_slice($books, $startOffset, $length);
     }

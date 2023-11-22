@@ -2,15 +2,15 @@
 
 namespace Src\Validate;
 
-use Src\Command;
 use Src\Exception\ValidationException;
+use Src\Request;
 
 interface Validable
 {
     /**
-     * @param Command $command
+     * @param Request $command
      * @throws ValidationException
      * @return void
      */
-    public function validate(Command $command): void;
+    public function validate(Request $command): void;
 }
