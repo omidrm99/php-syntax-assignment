@@ -14,7 +14,6 @@ use Src\Manager;
 use Src\Request;
 
 use Src\Validate\IndexValidation;
-use Src\Validate\ShowValidation;
 
 const COMMAND_PATH = __DIR__ . '/commands.json';
 
@@ -29,9 +28,7 @@ $manager->addCommand(
 );
 $manager->addCommand(
     CommandName::Show->value,
-    ShowCommand::class,
-    ShowValidation::class
-);
+    ShowCommand::class);
 
 $manager->execute($command);
 

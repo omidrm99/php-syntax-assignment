@@ -8,9 +8,9 @@ use Src\Request;
 interface Validable
 {
     /**
-     * @param Request $command
-     * @throws ValidationException
+     * @param Request $request
      * @return void
+     * @throws ValidationException
      */
-    public function validate(Request $command): void;
+    public function validate(Request $request): void;
 }
