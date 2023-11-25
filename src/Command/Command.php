@@ -2,7 +2,7 @@
 
 namespace Src\Command;
 
-use Src\Request;
+use src\Request\Request;
 
 interface Command
 {

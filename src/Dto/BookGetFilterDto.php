@@ -2,7 +2,7 @@
 
 namespace Src\Dto;
 
-use Src\Request;
+use src\Request\Request;
 
 class BookGetFilterDto extends FilterDto
 {

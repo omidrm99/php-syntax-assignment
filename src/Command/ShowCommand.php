@@ -5,7 +5,7 @@ namespace Src\Command;
 use Src\Dto\BookGetFilterDto;
 use Src\Exception\NotFoundException;
 use Src\Model\Book;
-use Src\Request;
+use Src\Request\Request;
 use Src\View\View;
 
 class ShowCommand implements Command

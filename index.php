@@ -9,9 +9,8 @@ use Src\Command\IndexCommand;
 use Src\Command\ShowCommand;
 use Src\Enum\CommandName;
 use Src\Manager;
-use Src\Request;
-
-use Src\Validate\IndexValidation;
+use Src\Request\Request;
+use Src\Request\Validate\IndexValidation;
 
 const COMMAND_PATH = __DIR__ . '/commands.json';
 

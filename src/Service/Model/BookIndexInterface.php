@@ -4,7 +4,6 @@ namespace Src\Service\Model;
 
 use Src\Dto\BookDto;
 use Src\Dto\BookGetFilterDto;
-use Src\Request;
 
 interface BookIndexInterface
 {

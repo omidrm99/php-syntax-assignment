@@ -7,6 +7,7 @@ use Src\Command\Command;
 use Src\Dto\CommandDto;
 use Src\Exception\CommandNotFoundException;
 use Src\Exception\ValidationException;
+use src\Request\Request;
 
 class Manager
 {
