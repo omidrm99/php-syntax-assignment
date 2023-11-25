@@ -22,7 +22,8 @@ class CsvBookIndex implements BookIndexInterface
                 authorName: $book[2],
                 isbn: $book[0],
                 pageCount: $book[3],
-                publishDate: $book[4]
+                publishDate: $book[4],
+                softDeleted: $book[5]
             );
         }
         fclose($file);

@@ -11,7 +11,8 @@ class BookDto
         public string $authorName,
         public string $isbn,
         public int    $pageCount,
-        public int    $timeStamp
+        public int    $timeStamp,
+        public bool   $softDeleted
     )
     {
     }
@@ -21,7 +22,8 @@ class BookDto
         string $authorName,
         string $isbn,
         int    $pageCount,
-        string $publishDate
+        string $publishDate,
+        bool   $softDeleted
     ): self
     {
         $time = Carbon::createFromFormat('Y-m-d', $publishDate);
@@ -30,7 +32,8 @@ class BookDto
             authorName: $authorName,
             isbn: $isbn,
             pageCount: $pageCount,
-            timeStamp: $time->timestamp
+            timeStamp: $time->timestamp,
+            softDeleted: $softDeleted
         );
     }
 }

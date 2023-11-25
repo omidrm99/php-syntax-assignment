@@ -42,7 +42,7 @@ class Book implements Model
         $data = $this->indexData();
         foreach ($data as $datum) {
             assert($datum instanceof BookDto);
-            if ($datum->isbn === $isbn) {
+            if ($datum->isbn === $isbn && $datum->softDeleted === false) {
                 return $datum;
             }
         }
@@ -59,6 +59,9 @@ class Book implements Model
 
     private function checkShouldBeFiltered(BookDto $bookDto, BookGetFilterDto $bookGetFilterDto): bool
     {
+        if ($bookDto->softDeleted === true) {
+            return false;
+        }
         if (in_array($bookDto->title, $bookGetFilterDto->titles)) {
             return true;
         } elseif (in_array($bookDto->authorName, $bookGetFilterDto->authors)) {

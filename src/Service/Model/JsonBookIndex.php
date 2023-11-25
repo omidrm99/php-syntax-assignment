@@ -18,12 +18,13 @@ class JsonBookIndex implements BookIndexInterface
             file_get_contents(filename: $this->jsonFilePath)
         )->books;
         foreach ($contents as $book) {
-            $books[] =  BookDto::fromData(
+            $books[] = BookDto::fromData(
                 title: $book->bookTitle,
                 authorName: $book->authorName,
                 isbn: $book->ISBN,
                 pageCount: $book->pagesCount,
-                publishDate: $book->publishDate
+                publishDate: $book->publishDate,
+                softDeleted: $book->softDeleted
             );
         }
         return $books;
