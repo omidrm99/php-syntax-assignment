@@ -1,7 +1,6 @@
 {
-  "command_name": "index",
+  "command_name": "show",
   "parameters": {
-    "perPage":6,
-    "page": 1
+    "isbn": "978-1451635626"
   }
 }

@@ -11,6 +11,7 @@ use Src\Enum\CommandName;
 use Src\Manager;
 use Src\Request\Request;
 use Src\Request\Validate\IndexValidation;
+use Src\Request\Validate\ShowValidation;
 
 const COMMAND_PATH = __DIR__ . '/commands.json';
 
@@ -26,7 +27,8 @@ try {
     );
     $manager->addCommand(
         CommandName::Show->value,
-        ShowCommand::class);
+        ShowCommand::class,
+        ShowValidation::class);
     $manager->execute($command);
 } catch (\Src\Exception\CommandNotFoundException|
 \Src\Exception\ValidationException|

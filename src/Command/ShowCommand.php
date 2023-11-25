@@ -2,7 +2,6 @@
 
 namespace Src\Command;
 
-use Src\Dto\BookGetFilterDto;
 use Src\Exception\NotFoundException;
 use Src\Model\Book;
 use Src\Request\Request;
@@ -15,10 +14,10 @@ class ShowCommand implements Command
      */
     public function handle(Request $request): void
     {
-        $book = (new Book())->get(BookGetFilterDto::fromRequest($request));
-        if (empty($book)) {
+        $book = (new Book())->find($request->isbn);
+        if (is_null($book)) {
             throw new NotFoundException();
         }
-        View::render(fileName: 'book', items: ['book' => $book[0]]);
+        View::render(fileName: 'book', items: ['book' => $book]);
     }
 }

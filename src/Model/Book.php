@@ -37,6 +37,18 @@ class Book implements Model
         return $filteredData;
     }
 
+    public function find(string $isbn): ?BookDto
+    {
+        $data = $this->indexData();
+        foreach ($data as $datum) {
+            assert($datum instanceof BookDto);
+            if ($datum->isbn === $isbn) {
+                return $datum;
+            }
+        }
+        return null;
+    }
+
     private function getBookGetters(): array
     {
         return [
