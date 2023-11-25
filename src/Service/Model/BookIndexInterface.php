@@ -8,9 +8,8 @@ use Src\Dto\BookGetFilterDto;
 interface BookIndexInterface
 {
     /**
-     * @param BookGetFilterDto $filterDto
      * @return BookDto[]
      */
-    public function getRequestedBooks(BookGetFilterDto $filterDto): array;
+    public function getRequestedBooks(): array;
 
 }

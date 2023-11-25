@@ -13,7 +13,7 @@ class IndexValidation implements Validable
     public function getRules(): array
     {
         return [
-            'page' => [IntRule::class, SortRule::class],
+            'page' => [IntRule::class],
             'perPage' => [IntRule::class],
             'isbns' => [IsArray::class, ItemsAre13Isbn::class],
             'authors' => [IsArray::class, ItemsAreString::class],

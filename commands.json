@@ -1,6 +1,7 @@
 {
   "command_name": "index",
   "parameters": {
-    "isbns" : ["978-0061120084"]
+    "perPage":6,
+    "page": 1
   }
 }
