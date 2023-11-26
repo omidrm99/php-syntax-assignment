@@ -5,9 +5,7 @@ namespace Src\Command;
 use Src\Dto\BookDto;
 use Src\Dto\BookGetFilterDto;
 use Src\Model\Book;
-use Src\Request;
-use src\Service\Model\CsvBookIndex;
-use src\Service\Model\JsonBookIndex;
+use src\Request\Request;
 use Src\View\View;
 
 class IndexCommand implements Command
@@ -17,8 +15,8 @@ class IndexCommand implements Command
         $book = new Book();
         $filterDto = BookGetFilterDto::fromRequest($request);
         $allBooks = $book->get($filterDto);
-        $sortedBooks = $this->applyDateSort($allBooks, $request);
-        $finalBooks = $this->applyPagination($sortedBooks, $request);
+        $sortedBooks = $this->applyDateSort($allBooks, $request); // todo : we need a service
+        $finalBooks = $this->applyPagination($sortedBooks, $request); //todo : we need a service
         View::render(fileName: 'list', items: ['books' => $finalBooks]);
     }
 

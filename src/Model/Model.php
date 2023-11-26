@@ -2,7 +2,6 @@
 
 namespace Src\Model;
 
-use Src\Dto\BookGetFilterDto;
 use Src\Dto\FilterDto;
 use Src\Dto\SourceDto;
 
