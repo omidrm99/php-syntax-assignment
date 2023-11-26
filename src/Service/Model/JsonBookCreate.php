@@ -6,8 +6,8 @@ use Src\Dto\InsertDto;
 
 class JsonBookCreate implements BookCreateInterface
 {
-    private string $jsonFilePath = __DIR__ . '/../../database/books.json'; //todo : read from env.
-    private string $authorsFilePath = __DIR__ . '/../../database/authors.json'; //todo : read from env.
+    private string $jsonFilePath = __DIR__ . '/../../../database/books.json'; //todo : read from env.
+    private string $authorsFilePath = __DIR__ . '/../../../database/authors.json'; //todo : read from env.
 
     public function addRequestedBooks(InsertDto $insertDto): array
     {
@@ -29,7 +29,7 @@ class JsonBookCreate implements BookCreateInterface
                     'authorName' => $insertItem->authorName,
                     'pagesCount' => $insertItem->pageCount,
                     'publishDate' => date('Y-m-d', $insertItem->timeStamp),
-                    'deleted' => false
+                    'softDeleted' => false
                 ];
                 $books['books'][] = $jsonFormat;
                 $updatedBooks = json_encode($books, JSON_PRETTY_PRINT);

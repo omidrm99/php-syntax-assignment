@@ -4,7 +4,7 @@ namespace Src\Command;
 
 use Src\Dto\InsertDto;
 use Src\Model\Book;
-use Src\Request;
+use Src\Request\Request;
 use Src\View\View;
 
 class CreateCommand implements Command

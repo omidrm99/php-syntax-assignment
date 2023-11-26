@@ -7,8 +7,8 @@ use Src\Dto\InsertDto;
 class CsvBookCreate implements BookCreateInterface
 {
 
-    private string $csvFilePath = __DIR__ . '/../../database/books.csv'; //todo : read from env.
-    private string $authorsFilePath = __DIR__ . '/../../database/authors.json'; //todo : read from env.
+    private string $csvFilePath = __DIR__ . '/../../../database/books.csv'; //todo : read from env.
+    private string $authorsFilePath = __DIR__ . '/../../../database/authors.json'; //todo : read from env.
 
     public function addRequestedBooks(InsertDto $insertDto): array
     {

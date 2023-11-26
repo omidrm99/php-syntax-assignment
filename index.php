@@ -31,9 +31,8 @@ try {
     $manager->addCommand(
         CommandName::Show->value,
         ShowCommand::class,
-        ShowValidation::class);
-        ShowCommand::class
-    );
+        ShowValidation::class
+);
     $manager->addCommand(
         CommandName::Create->value,
         CreateCommand::class

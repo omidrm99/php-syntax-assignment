@@ -4,7 +4,6 @@ namespace Src\Model;
 
 use JetBrains\PhpStorm\Pure;
 use Src\Dto\BookDto;
-use Src\Dto\BookDto;
 use Src\Dto\BookGetFilterDto;
 use Src\Dto\DeleteDto;
 use Src\Dto\FilterDto;

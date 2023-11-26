@@ -4,7 +4,7 @@ namespace Src\Command;
 
 use Src\Dto\BookDto;
 use Src\Model\Book;
-use Src\Request;
+use Src\Request\Request;
 use Src\View\View;
 
 class UpdateCommand implements Command
@@ -18,7 +18,8 @@ class UpdateCommand implements Command
             authorName: $requestParams['author'],
             isbn: $requestParams['isbn'],
             pageCount: $requestParams['pages'],
-            publishDate: $requestParams['date']
+            publishDate: $requestParams['date'],
+            softDeleted: false
         );
         $updatedBook = $book->update($bookToUpdate);
         View::render(fileName: 'list', items: ['books' => $updatedBook]);

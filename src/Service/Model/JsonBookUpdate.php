@@ -6,7 +6,7 @@ use Src\Dto\BookDto;
 
 class JsonBookUpdate implements BookUpdateInterface
 {
-    private string $jsonFilePath = __DIR__ . '/../../database/books.json'; //todo : read from env.
+    private string $jsonFilePath = __DIR__ . '/../../../database/books.json'; //todo : read from env.
 
     public function updateRequestedBook(BookDto $bookDto): array
     {
@@ -26,7 +26,8 @@ class JsonBookUpdate implements BookUpdateInterface
                     authorName: $item['authorName'],
                     isbn: $item['ISBN'],
                     pageCount: $item['pagesCount'],
-                    publishDate: $item['publishDate']
+                    publishDate: $item['publishDate'],
+                    softDeleted: $item['softDeleted']
                 );
                 $flag = 1;
                 break;

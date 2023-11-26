@@ -23,7 +23,8 @@ class InsertDto
                 authorName: $bookItem['author'],
                 isbn: $bookItem['isbn'],
                 pageCount: $bookItem['pages'],
-                publishDate: $bookItem['date']
+                publishDate: $bookItem['date'],
+                softDeleted: false
             );
             $books[] = $book;
         }

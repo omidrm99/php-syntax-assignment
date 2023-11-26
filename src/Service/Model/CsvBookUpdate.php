@@ -6,7 +6,7 @@ use Src\Dto\BookDto;
 
 class CsvBookUpdate implements BookUpdateInterface
 {
-    private string $csvFilePath = __DIR__ . '/../../database/books.csv'; //todo : read from env.
+    private string $csvFilePath = __DIR__ . '/../../../database/books.csv'; //todo : read from env.
 
     public function updateRequestedBook(BookDto $bookDto): array
     {
@@ -24,7 +24,8 @@ class CsvBookUpdate implements BookUpdateInterface
                     authorName: $item[2],
                     isbn: $item[0],
                     pageCount: $item[3],
-                    publishDate: $item[4]
+                    publishDate: $item[4],
+                    softDeleted: $item[5]
                 );
 
                 $flag = 1;

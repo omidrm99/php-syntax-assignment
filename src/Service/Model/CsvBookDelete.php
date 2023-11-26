@@ -7,7 +7,7 @@ use Src\Dto\DeleteDto;
 
 class CsvBookDelete implements BookDeleteInterface
 {
-    private string $csvFilePath = __DIR__ . '/../../database/books.csv'; //todo : read from env.
+    private string $csvFilePath = __DIR__ . '/../../../database/books.csv'; //todo : read from env.
 
     public function deleteRequestedBooks(DeleteDto $deleteDto): array
     {
@@ -21,7 +21,8 @@ class CsvBookDelete implements BookDeleteInterface
                     authorName: $item[2],
                     isbn: $item[0],
                     pageCount: $item[3],
-                    publishDate: $item[4]
+                    publishDate: $item[4],
+                    softDeleted: true
                 );
                 $flag = 1;
                 break;

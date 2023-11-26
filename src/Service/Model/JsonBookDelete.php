@@ -7,7 +7,7 @@ use Src\Dto\DeleteDto;
 
 class JsonBookDelete implements BookDeleteInterface
 {
-    private string $jsonFilePath = __DIR__ . '/../../database/books.json'; //todo : read from env.
+    private string $jsonFilePath = __DIR__ . '/../../../database/books.json'; //todo : read from env.
 
     public function deleteRequestedBooks(DeleteDto $deleteDto): array
     {
@@ -17,14 +17,15 @@ class JsonBookDelete implements BookDeleteInterface
         $flag = 0;
         foreach ($books['books'] as &$item) {
             if (($item['ISBN'] === $deleteDto->isbn)) {
-                $item['deleted'] = true;
+                $item['softDeleted'] = true;
 
                 $booksDto = BookDto::fromData(
                     title: $item['bookTitle'],
                     authorName: $item['authorName'],
                     isbn: $item['ISBN'],
                     pageCount: $item['pagesCount'],
-                    publishDate: $item['publishDate']
+                    publishDate: $item['publishDate'],
+                    softDeleted: $item['softDeleted']
                 );
                 $flag = 1;
                 break;
