@@ -2,7 +2,6 @@
 
 namespace Src\Service\Model;
 
-use Src\Dto\BookDto;
 use Src\Dto\InsertDto;
 
 class CsvBookCreate implements BookCreateInterface
@@ -14,46 +13,34 @@ class CsvBookCreate implements BookCreateInterface
     public function addRequestedBooks(InsertDto $insertDto): array
     {
         $booksDto = [];
-        $file = fopen($this->csvFilePath, 'r');
+        $books = [];
+        $file = fopen($this->csvFilePath, 'a+');
         fgetcsv($file);
         while (($book = fgetcsv($file)) !== false) {
-            $dto = BookDto::fromData(
-                title: $book[1],
-                authorName: $book[2],
-                isbn: $book[0],
-                pageCount: $book[3],
-                publishDate: $book[4]
-            );
-            $booksDto[] = $dto;
+            $books[] = $book;
         }
-        foreach ($insertDto as $insertItem) {
-            if (!in_array($insertItem, $booksDto)) {
+        foreach ($insertDto->books as $insertItem) {
+            $flag = 0;
+            foreach ($books as $item) {
+                if (($item[0] === $insertItem->isbn)) {
+                    $flag = 1;
+                }
+            }
+            if (!$flag) {
                 $csvFormat = [
                     $insertItem->isbn,
                     $insertItem->title,
                     $insertItem->authorName,
                     $insertItem->pageCount,
-                    $insertItem->publishDate
+                    date('Y-m-d', $insertItem->timeStamp),
+                    'false'
                 ];
                 fputcsv($file, $csvFormat);
                 $booksDto[] = $insertItem;
+                (new JsonAuthorCreate())->addAuthor($insertItem->authorName, $this->authorsFilePath);
             }
-            $this->addAuthor($insertItem->authorName);
         }
         fclose($file);
         return $booksDto;
-    }
-
-    private function addAuthor(string $authorName)
-    {
-        $authorsFile = file_get_contents($this->authorsFilePath);
-        $authors = json_decode($authorsFile, true);
-        foreach ($authors as $ignored) {
-            if (!in_array($authorName, $authors)) {
-                $authors['authors'][] = $authorName;
-            }
-        }
-        $updatedAuthors = json_encode($authors, JSON_PRETTY_PRINT);
-        file_put_contents($authorsFile, $updatedAuthors);
     }
 }

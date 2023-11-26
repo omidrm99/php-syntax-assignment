@@ -5,9 +5,11 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use Src\Command\DeleteCommand;
 use Src\Command\IndexCommand;
 use Src\Command\ShowCommand;
 use Src\Command\CreateCommand;
+use Src\Command\UpdateCommand;
 use Src\Enum\CommandName;
 use Src\Manager;
 use Src\Request;
@@ -34,6 +36,15 @@ try {
         CommandName::Create->value,
         CreateCommand::class
     );
+    $manager->addCommand(
+        CommandName::Delete->value,
+        DeleteCommand::class
+    );
+    $manager->addCommand(
+        CommandName::Update->value,
+        UpdateCommand::class
+    );
+
     $manager->execute($command);
 } catch (\Src\Exception\CommandNotFoundException|
 \Src\Exception\ValidationException|

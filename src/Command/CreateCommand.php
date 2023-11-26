@@ -12,7 +12,7 @@ class CreateCommand implements Command
     public function handle(Request $request): void
     {
         $book = new Book();
-        $booksToAdd = InsertDto::fromRequest($request);
+        $booksToAdd = InsertDto::fromData($request->books, $request->file);
         $allBooks = $book->add($booksToAdd);
         View::render(fileName: 'list', items: ['books' => $allBooks]);
     }

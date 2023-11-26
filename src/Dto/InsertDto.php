@@ -2,31 +2,31 @@
 
 namespace Src\Dto;
 
-use Src\Request;
-
 class InsertDto
 {
     public function __construct(
-        public array $books
+        public array  $books,
+        public string $file
     )
     {
     }
 
-    public static function fromRequest(
-        Request $request
+    public static function fromData(
+        array  $booksList,
+        string $file
     ): InsertDto
     {
-        foreach ($request as $requestItem) {
-            $books = [];
+        $books = [];
+        foreach ($booksList as $bookItem) {
             $book = BookDto::fromData(
-                title: $requestItem->title,
-                authorName: $requestItem->author,
-                isbn: $requestItem->isbn,
-                pageCount: $requestItem->pages,
-                publishDate: $requestItem->date
+                title: $bookItem['title'],
+                authorName: $bookItem['author'],
+                isbn: $bookItem['isbn'],
+                pageCount: $bookItem['pages'],
+                publishDate: $bookItem['date']
             );
             $books[] = $book;
         }
-            return new self($books);
+        return new self($books, $file);
     }
 }
